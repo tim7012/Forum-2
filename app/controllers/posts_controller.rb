@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :set_post, :only => [:show, :edit, :update, :destroy]
+  before_action :set_post, :only => [:show]
   before_action :authenticate_user!, :except => [:index, :show]
 
   def index
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.user = current_user
+    @post.author = current_user
 
     if @post.save
       flash[:notice] = "Post was successfully created"
@@ -41,10 +41,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-
+    @post = current_user.posts.find(params[:id])
   end
 
   def update
+    @post = current_user.posts.find(params[:id])
     if @post.update(post_params)
       flash[:notice] = "Update successfully"
       redirect_to :action => :index
@@ -54,6 +55,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post = current_user.posts.find(params[:id])
     @post.destroy
     redirect_to posts_path :action => :index
     flash[:alert] = "The post was successfully deleted"

@@ -1,11 +1,11 @@
 <h1>Forum</h1>
-
-<%= link_to 'Sort by lastest comment time', posts_path(:order => 'last_comment_time') %>
-<%= link_to 'Sort by comment number', posts_path(:order =>'comment_number')%>
-<%= link_to 'Sort by clicks', posts_path(:order => 'topic_clicks') %>
+<br><br>
+<p><%= link_to 'Sort by lastest comment time', posts_path(:order => 'last_comment_time') %></p>
+<p><%= link_to 'Sort by comment number', posts_path(:order =>'comment_number')%></p>
+<p><%= link_to 'Sort by clicks', posts_path(:order => 'topic_clicks') %></p>
 <br><br>
 
-<table>
+<table class="table">
 
   <tr>
     <td>Topic</td>
@@ -20,7 +20,7 @@
   <% @posts.each do |post|%>
     <tr>
       <td><%= link_to post.title, post_path(post)%></td>
-      <td><%= post.user.email %></td>
+      <td><%= post.author.email %></td>
       <td><%= post.id %></td>
       <td><%= post.comments.count %></td>
       <td><%= post.clicked %></td>
@@ -31,8 +31,10 @@
             No comments
         <% end %>
       </td>
-      <td><%= link_to "Edit", edit_post_path(post), :class => "btn btn-primary"%></td>
-      <td><%= link_to "Delete", post_path(post), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "Are you sure?"} %></td>
+      <% if post.editable_by?(current_user) %>
+        <td><%= link_to "Edit", edit_post_path(post), :class => "btn btn-primary"%></td>
+        <td><%= link_to "Delete", post_path(post), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "Are you sure?"} %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>
