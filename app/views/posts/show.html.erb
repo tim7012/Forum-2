@@ -1,5 +1,7 @@
 <p>Title: <%= @post.title%></p>
 <p><%= @post.content%></p>
+<p><%= @post.user.email%></p>
+
 
 <p>Category:
   <% @post.categorys.each do |g| %>

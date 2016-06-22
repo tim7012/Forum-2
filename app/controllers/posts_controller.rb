@@ -1,14 +1,27 @@
 class PostsController < ApplicationController
 
   before_action :set_post, :only => [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :except => [:index, :show]
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order("updated_at DESC")
+    if params[:order]
+      if params[:order] == 'last_comment_time'
+        @posts = Post.all.order("comment_last_updated_at DESC")
+      elsif params[:order] && params[:order] == 'comment_number'
+        @posts = Post.all.order("comments_count DESC")
+      elsif params[:order] && params[:order] == "topic_clicks"
+        @posts = Post.all.order("clicked DESC")
+      end
+    end
+    # @posts = Post.page(params[:page]).per(5)
   end
 
   def show
+    @post.clicked += 1
+    @post.save
 
+    @comments = @post.comments.order("updated_at desc")
   end
 
   def new
@@ -17,6 +30,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user = current_user
 
     if @post.save
       flash[:notice] = "Post was successfully created"
@@ -51,13 +65,13 @@ class PostsController < ApplicationController
     @comments = Comment.all
   end
 
-  private
+  protected
 
   def set_post
     @post = Post.find(params[:id])
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :category_ids => [])
+    params.require(:post).permit(:title, :content, :clicked, :category_ids => [])
   end
 end

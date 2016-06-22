@@ -1,37 +1,42 @@
 <h1>Forum</h1>
 
-
-<%= link_to "New Post", new_post_path %>
-
-<%# link_to 'Sort by lastest comments', post_comments_path( :order => "created_at") %>
-<%# link_to 'Sort by Default', events_path %>
-
+<%= link_to 'Sort by lastest comment time', posts_path(:order => 'last_comment_time') %>
+<%= link_to 'Sort by comment number', posts_path(:order =>'comment_number')%>
+<%= link_to 'Sort by clicks', posts_path(:order => 'topic_clicks') %>
+<br><br>
 
 <table>
 
   <tr>
     <td>Topic</td>
+    <td>User</td>
+    <td>Post ID</td>
     <td>Comments</td>
-    <td>&nbsp&nbspLastest comment time</td>
-    <td></td>
+    <td>Clicks</td>
+    <td>Last comment time</td>
+
   </tr>
 
   <% @posts.each do |post|%>
-
-  <tr>
-    <td><%= link_to post.title, post_path(post)%></td>
-    <td><%= post.comments.count %></td>
-    <td>
-      <% if post.comments.count > 0 %>
-      <%= post.comments.last.updated_at  %>
-
-      <% else %>
-
-      <% end %>
+    <tr>
+      <td><%= link_to post.title, post_path(post)%></td>
+      <td><%= post.user.email %></td>
+      <td><%= post.id %></td>
+      <td><%= post.comments.count %></td>
+      <td><%= post.clicked %></td>
+      <td>
+        <% if post.comments.count != 0 %>
+          <%= post.comments.last.updated_at  %>
+        <% else %>
+            No comments
+        <% end %>
       </td>
-    <td>&nbsp&nbsp</td>
-    <td><%= link_to "Edit", edit_post_path(post), :class => "btn btn-primary"%></td>
-    <td><%= link_to "Delete", post_path(post), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "Are you sure?"} %></td>
-  </tr>
+      <td><%= link_to "Edit", edit_post_path(post), :class => "btn btn-primary"%></td>
+      <td><%= link_to "Delete", post_path(post), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "Are you sure?"} %></td>
+    </tr>
   <% end %>
 </table>
+
+<%#= paginate @posts %>
+
+<%= link_to "New Post", new_post_path %>
