@@ -1,0 +1,7 @@
+<%= form_for @comment, :url => post_comment_path(@post, @comment), :html => { :method => :patch } do |f| %>
+
+  <%= render :partial => "form", :locals => {:f => f} %>
+
+  <%= f.submit "Update" %>
+
+<% end %>

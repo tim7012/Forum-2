@@ -1,0 +1,20 @@
+<%#CRUD page%>
+<% if @post.errors.any? %>
+  <ul>
+    <% @post.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+ <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+
+<div>
+  <%= f.label :title, "Title" %>
+  <%= f.text_field :title %>
+</div>
+
+<div>
+  <%= f.label :content, "Content" %>
+  <%= f.text_area :content %>
+</div>
