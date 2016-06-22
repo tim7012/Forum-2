@@ -14,7 +14,7 @@ class PostsController < ApplicationController
         @posts = Post.all.order("clicked DESC")
       end
     end
-    # @posts = Post.page(params[:page]).per(5)
+     @posts = Post.page(params[:page]).per(5)
   end
 
   def show
