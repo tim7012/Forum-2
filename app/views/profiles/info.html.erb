@@ -1,0 +1,27 @@
+<!--  <h1><%= @profile.try(:short_name) %></h1> -->
+ <h2>Email : <%= @profile.email %></h2>
+ <h2>First Name : <%= @profile.first_name %></h2>
+ <h2>Last Name : <%= @profile.last_name %></h2>
+
+
+ <hr>
+
+ <h2>This user's Posts and Comments</h2>
+   <ul>
+      <% @posts.each do |p| %>
+          <li>
+            <%= link_to p.title, post_path(p) %>
+          </li>
+      <% end %>
+  <br>
+      <% @comments.each do |comment| %>
+       <li>
+         <%= comment.content %>
+       </li>
+      <% end %>
+   </ul>
+ <hr>
+
+
+<%= link_to "Back to Index", posts_path %>
+

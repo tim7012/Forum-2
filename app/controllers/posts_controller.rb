@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, :except => [:index, :show]
 
   def index
+
     @posts = Post.all.order("updated_at DESC")
     if params[:order]
       if params[:order] == 'last_comment_time'
@@ -14,7 +15,7 @@ class PostsController < ApplicationController
         @posts = Post.all.order("clicked DESC")
       end
     end
-     @posts = Post.page(params[:page]).per(5)
+    # @posts = Post.page(params[:page]).per(5)
   end
 
   def show

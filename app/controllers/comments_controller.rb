@@ -20,7 +20,7 @@ before_action :authenticate_user!, :except => [:show]
 
   def create
     @comment = @post.comments.build(comment_params)
-    # @comment.user = current_user
+    @comment.user = current_user
     if @comment.save
       @post.comment_last_updated_at = @comment.updated_at
       @post.save

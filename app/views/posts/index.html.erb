@@ -20,7 +20,7 @@
   <% @posts.each do |post|%>
     <tr>
       <td><%= link_to post.title, post_path(post)%></td>
-      <td><%= post.author.email %></td>
+      <td><%= link_to post.author.email, profile_info_path(:id => post.author.id) %></td>
       <td><%= post.id %></td>
       <td><%= post.comments.count %></td>
       <td><%= post.clicked %></td>
@@ -39,6 +39,6 @@
   <% end %>
 </table>
 
-<%= paginate @posts %>
+<%#= paginate @posts %>
 
 <%= link_to "New Post", new_post_path %>

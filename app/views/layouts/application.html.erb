@@ -3,9 +3,10 @@
 <head>
 
 
-    <% if current_user %>
+  <% if current_user %>
     <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
-    <%= link_to('修改密碼', edit_registration_path(:user)) %>
+    <%= link_to('帳號設定', edit_user_registration_path(:user))%>|
+    <%= link_to('修改密碼', edit_user_registration_path(:user)) %>
   <% else %>
     <%= link_to('註冊', new_registration_path(:user)) %> |
     <%= link_to('登入', new_session_path(:user)) %>

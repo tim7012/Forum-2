@@ -7,14 +7,18 @@
   </ul>
 <% end %>
 
- <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+<div class="form-group">
+  <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+</div>
 
-<div>
+<div class="form-group">
   <%= f.label :title, "Title" %>
   <%= f.text_field :title %>
 </div>
 
-<div>
+<div class="form-group">
   <%= f.label :content, "Content" %>
   <%= f.text_area :content %>
 </div>
+
+
