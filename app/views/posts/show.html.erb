@@ -8,6 +8,7 @@
     <%= g.name %>
   <% end %>
 </p>
+<br>
 
 <%= link_to "New Comment", new_post_comment_path(@post)%>
 <p>Total comments:<%= @post.comments.count%></p>
@@ -19,6 +20,7 @@
   </tr>
   <% @post.comments.each do |c|%>
     <tr>
+
       <td><%= c.content %></td>
       <td><%=c.user.email%></td>
       <td><%= link_to "Edit", edit_post_comment_path(@post, c), :class => "btn btn-primary"%></td>

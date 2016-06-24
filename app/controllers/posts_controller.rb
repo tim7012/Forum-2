@@ -5,7 +5,18 @@ class PostsController < ApplicationController
 
   def index
 
-    @posts = Post.all.order("updated_at DESC")
+    if params[:sort] == "Ruby"
+      @posts = Category.find_by(:name =>"Ruby").posts
+    elsif params[:sort] == "Perl"
+      @posts = Category.find_by(:name =>"Perl").posts
+    elsif params[:sort] == "Java"
+      @posts = Category.find_by(:name =>"Java").posts
+    else
+      @posts = Post.all.order("updated_at DESC")
+    end
+
+
+
     if params[:order]
       if params[:order] == 'last_comment_time'
         @posts = Post.all.order("comment_last_updated_at DESC")
@@ -15,6 +26,8 @@ class PostsController < ApplicationController
         @posts = Post.all.order("clicked DESC")
       end
     end
+
+    @categories = Category.all
     # @posts = Post.page(params[:page]).per(5)
   end
 

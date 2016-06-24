@@ -7,9 +7,9 @@
   </ul>
 <% end %>
 
-<div class="form-group">
-  <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
-</div>
+
+<%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+
 
 <div class="form-group">
   <%= f.label :title, "Title" %>
