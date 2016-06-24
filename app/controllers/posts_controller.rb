@@ -5,37 +5,51 @@ class PostsController < ApplicationController
 
   def index
 
-    if params[:sort] == "Ruby"
-      @posts = Category.find_by(:name =>"Ruby").posts
-    elsif params[:sort] == "Perl"
-      @posts = Category.find_by(:name =>"Perl").posts
-    elsif params[:sort] == "Java"
-      @posts = Category.find_by(:name =>"Java").posts
-    else
-      @posts = Post.all.order("updated_at DESC")
-    end
+    @posts = Post.all
 
+    if params[:sort] == "Ruby"
+      @posts = Category.find_by(:name =>"Ruby").posts.where(:draft => false)
+    elsif params[:sort] == "Perl"
+      @posts = Category.find_by(:name =>"Perl").posts.where(:draft => false)
+    elsif params[:sort] == "Java"
+      @posts = Category.find_by(:name =>"Java").posts.where(:draft => false)
+    else
+      @posts = Post.all.order("updated_at DESC").where(:draft => false)
+    end
 
 
     if params[:order]
       if params[:order] == 'last_comment_time'
-        @posts = Post.all.order("comment_last_updated_at DESC")
+        @posts = Post.all.order("comment_last_updated_at DESC").where(:draft => false)
       elsif params[:order] && params[:order] == 'comment_number'
-        @posts = Post.all.order("comments_count DESC")
+        @posts = Post.all.order("comments_count DESC").where(:draft => false)
       elsif params[:order] && params[:order] == "topic_clicks"
-        @posts = Post.all.order("clicked DESC")
+        @posts = Post.all.order("clicked DESC").where(:draft => false)
       end
     end
 
-    @categories = Category.all
+
+    # if current_user.nil?
+    #   @posts = @posts.where(:draft=>"false")
+    # else
+    #   @posts = @posts.where("user_id =? or draft=?", current_user.id,"false")
+    # end
+
+    # @categories = Category.all
     # @posts = Post.page(params[:page]).per(5)
+
   end
 
   def show
     @post.clicked += 1
     @post.save
 
-    @comments = @post.comments.order("updated_at desc")
+    # @comments = @post.comments.order("updated_at desc")
+    if current_user.nil?
+      @comments = @post.comments.where(:draft=>"false").order("updated_at desc")
+    else
+      @comments = @post.comments.where("user_id =? or draft=?", current_user.id,"false").order("updated_at desc")
+    end
   end
 
   def new
@@ -88,6 +102,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :clicked, :category_ids => [])
+    params.require(:post).permit(:title, :content, :clicked, :draft, :category_ids => [])
   end
 end

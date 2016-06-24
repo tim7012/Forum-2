@@ -66,7 +66,7 @@ before_action :authenticate_user!, :except => [:show]
   end
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content, :draft)
   end
 
 end

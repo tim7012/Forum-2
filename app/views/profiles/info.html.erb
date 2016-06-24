@@ -26,6 +26,19 @@
     </ul>
   <hr>
 
+  <% if @profile  == current_user %>
+    <h2>Draft:</h2>
+      <ul>
+        <% @posts.where(:draft => true).each do |p| %>
+          <li>
+            <%= link_to p.title, edit_post_path(p)%>
+          </li>
+        <% end %>
+      </ul>
+  <% else %>
+    <% return %>
+  <% end %>
+
 
 <%= link_to "Back to Index", posts_path %>
 
