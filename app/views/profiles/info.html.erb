@@ -20,7 +20,7 @@
     <ul>
       <% @comments.each do |comment| %>
         <li>
-          <%= comment.content %>
+          <%= link_to comment.post.title, post_path(comment.post) %>
         </li>
       <% end %>
     </ul>
