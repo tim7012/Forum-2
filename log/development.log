@@ -36721,3 +36721,1057 @@ Processing by PostsController#index as HTML
   [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
   Rendered posts/index.html.erb within layouts/application (279.5ms)
 Completed 200 OK in 1273ms (Views: 1229.1ms | ActiveRecord: 7.5ms)
+
+
+Started GET "/posts?sort=Java" for ::1 at 2016-06-25 04:02:46 +0800
+Processing by PostsController#index as HTML
+  Parameters: {"sort"=>"Java"}
+  [1m[35mCategory Load (0.8ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."name" = ? LIMIT 1  [["name", "Java"]]
+  [1m[36mPost Load (1.4ms)[0m  [1mSELECT "posts".* FROM "posts" INNER JOIN "post_categoryships" ON "posts"."id" = "post_categoryships"."post_id" WHERE "post_categoryships"."category_id" = ?[0m  [["category_id", 6]]
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 16]]
+  [1m[35mCACHE (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 16]]
+  [1m[36mComment Load (0.9ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["post_id", 16]]
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered posts/index.html.erb within layouts/application (415.8ms)
+Completed 200 OK in 1677ms (Views: 1425.0ms | ActiveRecord: 15.9ms)
+
+
+Started GET "/posts?order=topic_clicks" for ::1 at 2016-06-25 04:02:49 +0800
+Processing by PostsController#index as HTML
+  Parameters: {"order"=>"topic_clicks"}
+  [1m[36mPost Load (0.9ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY clicked DESC[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 16]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 16]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["post_id", 16]]
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 13]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 13]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["post_id", 13]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 33]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 33]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 19]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 19]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 17]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 17]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["post_id", 17]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 18]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 18]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 34]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 34]]
+  [1m[36mCACHE (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 32]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 32]]
+  Rendered posts/index.html.erb within layouts/application (671.0ms)
+Completed 200 OK in 1803ms (Views: 1779.7ms | ActiveRecord: 13.3ms)
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-06-25 04:02:51 +0800
+
+
+Started GET "/assets/bootstrap/alert.self-d8b7bd612b3dcfdefb7b5539b9d5848d66ccbd3e7af8bb8d48bfb3288aaa7be8.js?body=1" for ::1 at 2016-06-25 04:02:51 +0800
+
+
+Started GET "/assets/bootstrap/affix.self-3555752f8a930795ee9e56751a52e6871104ae85d01b3ab8363da3802a5ecc78.js?body=1" for ::1 at 2016-06-25 04:02:51 +0800
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-06-25 04:02:51 +0800
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-06-25 04:02:51 +0800
+
+
+Started GET "/assets/application.self-97bf12be2a7b71a68377d6e36d4d97115aefe7784a89b3a5bfcec7e0f38591f0.css?body=1" for ::1 at 2016-06-25 04:02:51 +0800
+
+
+Started GET "/assets/bootstrap/carousel.self-35d204878d906298e55bc24553e11fd89b980fc4ffe5792fe36af8c0da289c54.js?body=1" for ::1 at 2016-06-25 04:02:52 +0800
+
+
+Started GET "/assets/bootstrap/button.self-e74d33ba39500940a78d6fa4d2d64f6ca7fd86d60a2149641f7fde7ba711d8a1.js?body=1" for ::1 at 2016-06-25 04:02:52 +0800
+
+
+Started GET "/assets/bootstrap/collapse.self-056c40532d9f0f126ec17e839f60c942f573fbd61a086e7f156306e3fc5e8c1f.js?body=1" for ::1 at 2016-06-25 04:02:52 +0800
+
+
+Started GET "/assets/bootstrap/dropdown.self-e56c2ffee4618411d43ecf15c89273f6223847ad756e1cd17545d04afa732ed4.js?body=1" for ::1 at 2016-06-25 04:02:52 +0800
+
+
+Started GET "/assets/bootstrap/modal.self-62463080dba6b9d024ff0a3192da0e76eacbc683194f3395047c6f5cfa0acb59.js?body=1" for ::1 at 2016-06-25 04:02:52 +0800
+
+
+Started GET "/assets/bootstrap/scrollspy.self-52afd90e8ba97d9f08617a13986e8869d6c4a45751c0bff59a6f91241e722aca.js?body=1" for ::1 at 2016-06-25 04:02:52 +0800
+
+
+Started GET "/assets/bootstrap/tab.self-dad0d5c377f9fae26394484535ebb23ccf68afae084f896af6ea4cdf8c9f6ae0.js?body=1" for ::1 at 2016-06-25 04:02:52 +0800
+
+
+Started GET "/assets/bootstrap/transition.self-3b268d4cd8c79e46ded7392885f72f64ffb5b0d49948a12b8cf9779f6163e13a.js?body=1" for ::1 at 2016-06-25 04:02:52 +0800
+
+
+Started GET "/assets/bootstrap/tooltip.self-facdc69246a072acb927ded77ff655f7c27a518b9357fddd45d119fbc8a0ab9f.js?body=1" for ::1 at 2016-06-25 04:02:52 +0800
+
+
+Started GET "/assets/bootstrap/popover.self-210cff1fb4b72b71a29b5122180cb5937c8145cd13a934dc838280f1d9607a3e.js?body=1" for ::1 at 2016-06-25 04:02:52 +0800
+
+
+Started GET "/assets/bootstrap-sprockets.self-fbfa5ad7d9aa0afe439ec4ff3883acc4cb92b62cb67c40d674320c9aa1d4642d.js?body=1" for ::1 at 2016-06-25 04:02:52 +0800
+
+
+Started GET "/assets/comments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-06-25 04:02:53 +0800
+
+
+Started GET "/assets/posts.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-06-25 04:02:53 +0800
+
+
+Started GET "/assets/profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-06-25 04:02:53 +0800
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-06-25 04:02:53 +0800
+
+
+Started GET "/posts" for ::1 at 2016-06-25 04:02:58 +0800
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (1.1ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY updated_at DESC
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 34]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 34]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 13]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 13]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["post_id", 13]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 33]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 33]]
+  [1m[35mCACHE (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 32]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 32]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 19]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 19]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 16]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 16]]
+  [1m[36mComment Load (0.8ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["post_id", 16]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 17]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 17]]
+  [1m[36mComment Load (0.8ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["post_id", 17]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 18]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 18]]
+  Rendered posts/index.html.erb within layouts/application (570.5ms)
+Completed 200 OK in 1632ms (Views: 1596.2ms | ActiveRecord: 13.3ms)
+
+
+Started GET "/posts" for ::1 at 2016-06-25 04:03:00 +0800
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (0.9ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY updated_at DESC[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 34]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 34]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 13]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 13]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["post_id", 13]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 33]]
+  [1m[35mCACHE (0.4ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 33]]
+  [1m[36mCACHE (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 32]]
+  [1m[36mCACHE (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 32]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 19]]
+  [1m[35mCACHE (0.2ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 19]]
+  [1m[36mCACHE (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 16]]
+  [1m[36mCACHE (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 16]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["post_id", 16]]
+  [1m[36mCACHE (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 17]]
+  [1m[36mCACHE (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 17]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["post_id", 17]]
+  [1m[36mCACHE (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 18]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 18]]
+  Rendered posts/index.html.erb within layouts/application (524.6ms)
+Completed 200 OK in 1435ms (Views: 1414.0ms | ActiveRecord: 12.8ms)
+
+
+Started GET "/profile/1" for ::1 at 2016-06-25 04:04:04 +0800
+Processing by ProfilesController#info as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.6ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE (user_id = 1)[0m
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments" WHERE (user_id = 1)
+  Rendered profiles/info.html.erb within layouts/application (12.4ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 563ms (Views: 552.2ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/posts" for ::1 at 2016-06-25 04:04:07 +0800
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (1.0ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY updated_at DESC
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 34]]
+  [1m[36mCACHE (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 34]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 13]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 13]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["post_id", 13]]
+  [1m[36mCACHE (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 33]]
+  [1m[36mCACHE (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 33]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 32]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 32]]
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 19]]
+  [1m[36mCACHE (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 19]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 16]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 16]]
+  [1m[36mComment Load (1.1ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["post_id", 16]]
+  [1m[35mCACHE (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 17]]
+  [1m[35mCACHE (0.2ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 17]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["post_id", 17]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 18]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 18]]
+  Rendered posts/index.html.erb within layouts/application (520.9ms)
+Completed 200 OK in 1517ms (Views: 1476.5ms | ActiveRecord: 13.7ms)
+
+
+Started GET "/profile/1" for ::1 at 2016-06-25 04:04:18 +0800
+Processing by ProfilesController#info as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (0.8ms)[0m  SELECT "posts".* FROM "posts" WHERE (user_id = 1)
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE (user_id = 1)[0m
+  Rendered profiles/info.html.erb within layouts/application (17.7ms)
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Completed 200 OK in 563ms (Views: 550.2ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/posts" for ::1 at 2016-06-25 04:04:20 +0800
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (0.8ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY updated_at DESC[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 34]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 34]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 13]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 13]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["post_id", 13]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 33]]
+  [1m[35mCACHE (0.2ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 33]]
+  [1m[36mCACHE (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 32]]
+  [1m[36mCACHE (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 32]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 19]]
+  [1m[35mCACHE (0.2ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 19]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 16]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 16]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["post_id", 16]]
+  [1m[36mCACHE (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (2.0ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 17]]
+  [1m[36mCACHE (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 17]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["post_id", 17]]
+  [1m[36mCACHE (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 18]]
+  [1m[36mCACHE (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 18]]
+  Rendered posts/index.html.erb within layouts/application (516.4ms)
+Completed 200 OK in 1398ms (Views: 1375.0ms | ActiveRecord: 13.8ms)
+
+
+Started GET "/posts" for ::1 at 2016-06-25 04:04:22 +0800
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (0.9ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY updated_at DESC
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 34]]
+  [1m[36mCACHE (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 34]]
+  [1m[35mUser Load (1.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 13]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 13]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["post_id", 13]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 33]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 33]]
+  [1m[35mCACHE (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 32]]
+  [1m[35mCACHE (0.2ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 32]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 19]]
+  [1m[36mCACHE (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 19]]
+  [1m[35mCACHE (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 16]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 16]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["post_id", 16]]
+  [1m[35mCACHE (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.8ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 17]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 17]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["post_id", 17]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 18]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 18]]
+  Rendered posts/index.html.erb within layouts/application (464.8ms)
+Completed 200 OK in 1359ms (Views: 1338.0ms | ActiveRecord: 12.1ms)
+
+
+Started GET "/profile/2" for ::1 at 2016-06-25 04:04:23 +0800
+Processing by ProfilesController#info as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (1.2ms)[0m  SELECT "posts".* FROM "posts" WHERE (user_id = 2)
+  [1m[36mComment Load (2.2ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE (user_id = 2)[0m
+  Rendered profiles/info.html.erb within layouts/application (74.1ms)
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Completed 200 OK in 992ms (Views: 977.6ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/posts" for ::1 at 2016-06-25 04:04:24 +0800
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (1.2ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY updated_at DESC[0m
+  [1m[35mUser Load (20.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 34]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 34]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 13]]
+  [1m[35mCACHE (0.2ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 13]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["post_id", 13]]
+  [1m[35mCACHE (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 33]]
+  [1m[35mCACHE (0.2ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 33]]
+  [1m[36mCACHE (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 32]]
+  [1m[36mCACHE (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 32]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 19]]
+  [1m[35mCACHE (0.2ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 19]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 16]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 16]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["post_id", 16]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 17]]
+  [1m[36mCACHE (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 17]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["post_id", 17]]
+  [1m[36mCACHE (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 18]]
+  [1m[36mCACHE (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 18]]
+  Rendered posts/index.html.erb within layouts/application (475.7ms)
+Completed 200 OK in 1270ms (Views: 1231.1ms | ActiveRecord: 31.4ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddBioToUser (20160624205236)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (3.2ms)[0m  [1mALTER TABLE "users" ADD "bio" varchar[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160624205236"]]
+  [1m[36m (2.5ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_post_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_post_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+
+
+Started GET "/profile/2" for ::1 at 2016-06-25 04:55:11 +0800
+  [1m[35mActiveRecord::SchemaMigration Load (0.7ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Processing by ProfilesController#info as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.8ms)[0m  SELECT "posts".* FROM "posts" WHERE (user_id = 2)
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE (user_id = 2)[0m
+  Rendered profiles/info.html.erb within layouts/application (96.9ms)
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Completed 200 OK in 1040ms (Views: 855.3ms | ActiveRecord: 8.8ms)
+
+
+Started GET "/assets/application.self-97bf12be2a7b71a68377d6e36d4d97115aefe7784a89b3a5bfcec7e0f38591f0.css?body=1" for ::1 at 2016-06-25 04:55:13 +0800
+
+
+Started GET "/assets/bootstrap/alert.self-d8b7bd612b3dcfdefb7b5539b9d5848d66ccbd3e7af8bb8d48bfb3288aaa7be8.js?body=1" for ::1 at 2016-06-25 04:55:13 +0800
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-06-25 04:55:13 +0800
+
+
+Started GET "/assets/bootstrap/affix.self-3555752f8a930795ee9e56751a52e6871104ae85d01b3ab8363da3802a5ecc78.js?body=1" for ::1 at 2016-06-25 04:55:14 +0800
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-06-25 04:55:14 +0800
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-06-25 04:55:14 +0800
+
+
+Started GET "/assets/bootstrap/button.self-e74d33ba39500940a78d6fa4d2d64f6ca7fd86d60a2149641f7fde7ba711d8a1.js?body=1" for ::1 at 2016-06-25 04:55:14 +0800
+
+
+Started GET "/assets/bootstrap/carousel.self-35d204878d906298e55bc24553e11fd89b980fc4ffe5792fe36af8c0da289c54.js?body=1" for ::1 at 2016-06-25 04:55:14 +0800
+
+
+Started GET "/assets/bootstrap/collapse.self-056c40532d9f0f126ec17e839f60c942f573fbd61a086e7f156306e3fc5e8c1f.js?body=1" for ::1 at 2016-06-25 04:55:14 +0800
+
+
+Started GET "/assets/bootstrap/dropdown.self-e56c2ffee4618411d43ecf15c89273f6223847ad756e1cd17545d04afa732ed4.js?body=1" for ::1 at 2016-06-25 04:55:14 +0800
+
+
+Started GET "/assets/bootstrap/modal.self-62463080dba6b9d024ff0a3192da0e76eacbc683194f3395047c6f5cfa0acb59.js?body=1" for ::1 at 2016-06-25 04:55:14 +0800
+
+
+Started GET "/assets/bootstrap/scrollspy.self-52afd90e8ba97d9f08617a13986e8869d6c4a45751c0bff59a6f91241e722aca.js?body=1" for ::1 at 2016-06-25 04:55:14 +0800
+
+
+Started GET "/assets/bootstrap/tab.self-dad0d5c377f9fae26394484535ebb23ccf68afae084f896af6ea4cdf8c9f6ae0.js?body=1" for ::1 at 2016-06-25 04:55:14 +0800
+
+
+Started GET "/assets/bootstrap/transition.self-3b268d4cd8c79e46ded7392885f72f64ffb5b0d49948a12b8cf9779f6163e13a.js?body=1" for ::1 at 2016-06-25 04:55:14 +0800
+
+
+Started GET "/assets/bootstrap/tooltip.self-facdc69246a072acb927ded77ff655f7c27a518b9357fddd45d119fbc8a0ab9f.js?body=1" for ::1 at 2016-06-25 04:55:15 +0800
+
+
+Started GET "/assets/bootstrap/popover.self-210cff1fb4b72b71a29b5122180cb5937c8145cd13a934dc838280f1d9607a3e.js?body=1" for ::1 at 2016-06-25 04:55:15 +0800
+
+
+Started GET "/assets/bootstrap-sprockets.self-fbfa5ad7d9aa0afe439ec4ff3883acc4cb92b62cb67c40d674320c9aa1d4642d.js?body=1" for ::1 at 2016-06-25 04:55:15 +0800
+
+
+Started GET "/assets/comments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-06-25 04:55:15 +0800
+
+
+Started GET "/assets/posts.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-06-25 04:55:15 +0800
+
+
+Started GET "/assets/profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-06-25 04:55:15 +0800
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-06-25 04:55:15 +0800
+
+
+Started GET "/users/edit.user" for ::1 at 2016-06-25 04:55:21 +0800
+Processing by Devise::RegistrationsController#edit as 
+  [1m[36mUser Load (18.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered devise/registrations/edit.html.erb within layouts/application (137.5ms)
+Completed 200 OK in 1281ms (Views: 1237.6ms | ActiveRecord: 18.8ms)
+
+
+Started PUT "/users" for ::1 at 2016-06-25 04:55:30 +0800
+Processing by Devise::RegistrationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"1JuUF0t9xppJ4amEw55lt+JeVZVQTjAGdxG9yJPyquyAn4ZrI5KpcnoB+9P3PqlM0hDdIdxHfLzJrBMJ16T2ew==", "user"=>{"email"=>"tim7012@msn.com", "first_name"=>"Timmmmrrr", "last_name"=>"Wu", "bio"=>"lalalala", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "current_password"=>"[FILTERED]"}, "commit"=>"Update"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered devise/registrations/edit.html.erb within layouts/application (122.6ms)
+Completed 200 OK in 1485ms (Views: 1188.8ms | ActiveRecord: 1.1ms)
+
+
+Started PUT "/users" for ::1 at 2016-06-25 04:55:38 +0800
+Processing by Devise::RegistrationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tQ3d7SvjDXuR0ZGDaJU+rmwVOT0SUm/ffWwL/5mIRk/hCc+RQwxik6Ixw9RcNfJVXFuxiZ5bI2XD0aU+3d4a2A==", "user"=>{"email"=>"tim7012@msn.com", "first_name"=>"Timmmmrrr", "last_name"=>"Wu", "bio"=>"lalalala", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "current_password"=>"[FILTERED]"}, "commit"=>"Update"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (1.3ms)[0m  begin transaction
+  [1m[36mSQL (0.9ms)[0m  [1mUPDATE "users" SET "bio" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["bio", "lalalala"], ["updated_at", "2016-06-24 20:55:38.406537"], ["id", 1]]
+  [1m[35m (3.2ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 325ms (ActiveRecord: 6.4ms)
+
+
+Started GET "/" for ::1 at 2016-06-25 04:55:38 +0800
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (1.1ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY updated_at DESC[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (1.4ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 34]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 34]]
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 13]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 13]]
+  [1m[36mComment Load (1.0ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["post_id", 13]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.8ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 33]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 33]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 32]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 32]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 19]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 19]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 16]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 16]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["post_id", 16]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 17]]
+  [1m[36mCACHE (0.6ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 17]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["post_id", 17]]
+  [1m[36mCACHE (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 18]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 18]]
+  Rendered posts/index.html.erb within layouts/application (686.7ms)
+Completed 200 OK in 1809ms (Views: 1739.4ms | ActiveRecord: 15.1ms)
+
+
+Started GET "/profile/1" for ::1 at 2016-06-25 04:55:43 +0800
+Processing by ProfilesController#info as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.9ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE (user_id = 1)[0m
+  [1m[35mComment Load (0.8ms)[0m  SELECT "comments".* FROM "comments" WHERE (user_id = 1)
+  Rendered profiles/info.html.erb within layouts/application (45.1ms)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1175ms (Views: 1158.0ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/profile/1" for ::1 at 2016-06-25 04:57:07 +0800
+Processing by ProfilesController#info as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (1.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (1.7ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE (user_id = 1)[0m
+  [1m[35mComment Load (1.0ms)[0m  SELECT "comments".* FROM "comments" WHERE (user_id = 1)
+  Rendered profiles/info.html.erb within layouts/application (52.0ms)
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1209ms (Views: 1162.3ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-06-25 04:57:09 +0800
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-06-25 04:57:09 +0800
+
+
+Started GET "/assets/bootstrap/button.self-e74d33ba39500940a78d6fa4d2d64f6ca7fd86d60a2149641f7fde7ba711d8a1.js?body=1" for ::1 at 2016-06-25 04:57:09 +0800
+
+
+Started GET "/assets/bootstrap/affix.self-3555752f8a930795ee9e56751a52e6871104ae85d01b3ab8363da3802a5ecc78.js?body=1" for ::1 at 2016-06-25 04:57:09 +0800
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-06-25 04:57:09 +0800
+
+
+Started GET "/assets/bootstrap/alert.self-d8b7bd612b3dcfdefb7b5539b9d5848d66ccbd3e7af8bb8d48bfb3288aaa7be8.js?body=1" for ::1 at 2016-06-25 04:57:09 +0800
+
+
+Started GET "/assets/application.self-97bf12be2a7b71a68377d6e36d4d97115aefe7784a89b3a5bfcec7e0f38591f0.css?body=1" for ::1 at 2016-06-25 04:57:09 +0800
+
+
+Started GET "/assets/bootstrap/carousel.self-35d204878d906298e55bc24553e11fd89b980fc4ffe5792fe36af8c0da289c54.js?body=1" for ::1 at 2016-06-25 04:57:10 +0800
+
+
+Started GET "/assets/bootstrap/collapse.self-056c40532d9f0f126ec17e839f60c942f573fbd61a086e7f156306e3fc5e8c1f.js?body=1" for ::1 at 2016-06-25 04:57:10 +0800
+
+
+Started GET "/assets/bootstrap/dropdown.self-e56c2ffee4618411d43ecf15c89273f6223847ad756e1cd17545d04afa732ed4.js?body=1" for ::1 at 2016-06-25 04:57:10 +0800
+
+
+Started GET "/assets/bootstrap/modal.self-62463080dba6b9d024ff0a3192da0e76eacbc683194f3395047c6f5cfa0acb59.js?body=1" for ::1 at 2016-06-25 04:57:10 +0800
+
+
+Started GET "/assets/bootstrap/scrollspy.self-52afd90e8ba97d9f08617a13986e8869d6c4a45751c0bff59a6f91241e722aca.js?body=1" for ::1 at 2016-06-25 04:57:10 +0800
+
+
+Started GET "/assets/bootstrap/tab.self-dad0d5c377f9fae26394484535ebb23ccf68afae084f896af6ea4cdf8c9f6ae0.js?body=1" for ::1 at 2016-06-25 04:57:10 +0800
+
+
+Started GET "/assets/bootstrap/transition.self-3b268d4cd8c79e46ded7392885f72f64ffb5b0d49948a12b8cf9779f6163e13a.js?body=1" for ::1 at 2016-06-25 04:57:10 +0800
+
+
+Started GET "/assets/bootstrap/tooltip.self-facdc69246a072acb927ded77ff655f7c27a518b9357fddd45d119fbc8a0ab9f.js?body=1" for ::1 at 2016-06-25 04:57:10 +0800
+
+
+Started GET "/assets/bootstrap/popover.self-210cff1fb4b72b71a29b5122180cb5937c8145cd13a934dc838280f1d9607a3e.js?body=1" for ::1 at 2016-06-25 04:57:10 +0800
+
+
+Started GET "/assets/comments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-06-25 04:57:10 +0800
+
+
+Started GET "/assets/bootstrap-sprockets.self-fbfa5ad7d9aa0afe439ec4ff3883acc4cb92b62cb67c40d674320c9aa1d4642d.js?body=1" for ::1 at 2016-06-25 04:57:11 +0800
+
+
+Started GET "/assets/posts.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-06-25 04:57:11 +0800
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-06-25 04:57:11 +0800
+
+
+Started GET "/assets/profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-06-25 04:57:11 +0800
+
+
+Started GET "/users/edit.user" for ::1 at 2016-06-25 04:57:15 +0800
+Processing by Devise::RegistrationsController#edit as 
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered devise/registrations/edit.html.erb within layouts/application (91.7ms)
+Completed 200 OK in 1292ms (Views: 1251.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/profile/1" for ::1 at 2016-06-25 04:57:19 +0800
+Processing by ProfilesController#info as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (1.0ms)[0m  SELECT "posts".* FROM "posts" WHERE (user_id = 1)
+  [1m[36mComment Load (0.7ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE (user_id = 1)[0m
+  Rendered profiles/info.html.erb within layouts/application (32.2ms)
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Completed 200 OK in 1206ms (Views: 1168.8ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/posts" for ::1 at 2016-06-25 04:57:22 +0800
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (1.1ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY updated_at DESC[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 34]]
+  [1m[35mCACHE (0.4ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 34]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 13]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 13]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["post_id", 13]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 33]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 33]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 32]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 32]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 19]]
+  [1m[35mCACHE (0.4ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 19]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 16]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 16]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["post_id", 16]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 17]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 17]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["post_id", 17]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 18]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 18]]
+  Rendered posts/index.html.erb within layouts/application (602.2ms)
+Completed 200 OK in 1684ms (Views: 1663.0ms | ActiveRecord: 13.4ms)
+
+
+Started GET "/profile/1" for ::1 at 2016-06-25 04:57:28 +0800
+Processing by ProfilesController#info as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (1.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE (user_id = 1)[0m
+  [1m[35mComment Load (1.0ms)[0m  SELECT "comments".* FROM "comments" WHERE (user_id = 1)
+  Rendered profiles/info.html.erb within layouts/application (50.6ms)
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1207ms (Views: 1167.5ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/profile/1" for ::1 at 2016-06-25 04:57:39 +0800
+Processing by ProfilesController#info as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.9ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE (user_id = 1)[0m
+  [1m[35mComment Load (0.7ms)[0m  SELECT "comments".* FROM "comments" WHERE (user_id = 1)
+  Rendered profiles/info.html.erb within layouts/application (28.0ms)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1215ms (Views: 1198.7ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/assets/application.self-97bf12be2a7b71a68377d6e36d4d97115aefe7784a89b3a5bfcec7e0f38591f0.css?body=1" for ::1 at 2016-06-25 04:57:40 +0800
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-06-25 04:57:40 +0800
+
+
+Started GET "/assets/bootstrap/affix.self-3555752f8a930795ee9e56751a52e6871104ae85d01b3ab8363da3802a5ecc78.js?body=1" for ::1 at 2016-06-25 04:57:41 +0800
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-06-25 04:57:41 +0800
+
+
+Started GET "/assets/bootstrap/alert.self-d8b7bd612b3dcfdefb7b5539b9d5848d66ccbd3e7af8bb8d48bfb3288aaa7be8.js?body=1" for ::1 at 2016-06-25 04:57:41 +0800
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-06-25 04:57:41 +0800
+
+
+Started GET "/assets/bootstrap/button.self-e74d33ba39500940a78d6fa4d2d64f6ca7fd86d60a2149641f7fde7ba711d8a1.js?body=1" for ::1 at 2016-06-25 04:57:41 +0800
+
+
+Started GET "/assets/bootstrap/carousel.self-35d204878d906298e55bc24553e11fd89b980fc4ffe5792fe36af8c0da289c54.js?body=1" for ::1 at 2016-06-25 04:57:41 +0800
+
+
+Started GET "/assets/bootstrap/collapse.self-056c40532d9f0f126ec17e839f60c942f573fbd61a086e7f156306e3fc5e8c1f.js?body=1" for ::1 at 2016-06-25 04:57:41 +0800
+
+
+Started GET "/assets/bootstrap/modal.self-62463080dba6b9d024ff0a3192da0e76eacbc683194f3395047c6f5cfa0acb59.js?body=1" for ::1 at 2016-06-25 04:57:41 +0800
+
+
+Started GET "/assets/bootstrap/dropdown.self-e56c2ffee4618411d43ecf15c89273f6223847ad756e1cd17545d04afa732ed4.js?body=1" for ::1 at 2016-06-25 04:57:41 +0800
+
+
+Started GET "/assets/bootstrap/scrollspy.self-52afd90e8ba97d9f08617a13986e8869d6c4a45751c0bff59a6f91241e722aca.js?body=1" for ::1 at 2016-06-25 04:57:41 +0800
+
+
+Started GET "/assets/bootstrap/tab.self-dad0d5c377f9fae26394484535ebb23ccf68afae084f896af6ea4cdf8c9f6ae0.js?body=1" for ::1 at 2016-06-25 04:57:41 +0800
+
+
+Started GET "/assets/bootstrap/transition.self-3b268d4cd8c79e46ded7392885f72f64ffb5b0d49948a12b8cf9779f6163e13a.js?body=1" for ::1 at 2016-06-25 04:57:42 +0800
+
+
+Started GET "/assets/bootstrap/tooltip.self-facdc69246a072acb927ded77ff655f7c27a518b9357fddd45d119fbc8a0ab9f.js?body=1" for ::1 at 2016-06-25 04:57:42 +0800
+
+
+Started GET "/assets/bootstrap/popover.self-210cff1fb4b72b71a29b5122180cb5937c8145cd13a934dc838280f1d9607a3e.js?body=1" for ::1 at 2016-06-25 04:57:42 +0800
+
+
+Started GET "/assets/bootstrap-sprockets.self-fbfa5ad7d9aa0afe439ec4ff3883acc4cb92b62cb67c40d674320c9aa1d4642d.js?body=1" for ::1 at 2016-06-25 04:57:42 +0800
+
+
+Started GET "/assets/comments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-06-25 04:57:42 +0800
+
+
+Started GET "/assets/posts.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-06-25 04:57:42 +0800
+
+
+Started GET "/assets/profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-06-25 04:57:42 +0800
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-06-25 04:57:42 +0800
+
+
+Started GET "/profile/1" for ::1 at 2016-06-25 04:57:53 +0800
+Processing by ProfilesController#info as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (1.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE (user_id = 1)[0m
+  [1m[35mComment Load (0.7ms)[0m  SELECT "comments".* FROM "comments" WHERE (user_id = 1)
+  Rendered profiles/info.html.erb within layouts/application (51.7ms)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1234ms (Views: 1216.8ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-06-25 04:57:54 +0800
+
+
+Started GET "/assets/application.self-97bf12be2a7b71a68377d6e36d4d97115aefe7784a89b3a5bfcec7e0f38591f0.css?body=1" for ::1 at 2016-06-25 04:57:54 +0800
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-06-25 04:57:55 +0800
+
+
+Started GET "/assets/bootstrap/button.self-e74d33ba39500940a78d6fa4d2d64f6ca7fd86d60a2149641f7fde7ba711d8a1.js?body=1" for ::1 at 2016-06-25 04:57:55 +0800
+
+
+Started GET "/assets/bootstrap/affix.self-3555752f8a930795ee9e56751a52e6871104ae85d01b3ab8363da3802a5ecc78.js?body=1" for ::1 at 2016-06-25 04:57:55 +0800
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-06-25 04:57:55 +0800
+
+
+Started GET "/assets/bootstrap/alert.self-d8b7bd612b3dcfdefb7b5539b9d5848d66ccbd3e7af8bb8d48bfb3288aaa7be8.js?body=1" for ::1 at 2016-06-25 04:57:55 +0800
+
+
+Started GET "/assets/bootstrap/carousel.self-35d204878d906298e55bc24553e11fd89b980fc4ffe5792fe36af8c0da289c54.js?body=1" for ::1 at 2016-06-25 04:57:55 +0800
+
+
+Started GET "/assets/bootstrap/collapse.self-056c40532d9f0f126ec17e839f60c942f573fbd61a086e7f156306e3fc5e8c1f.js?body=1" for ::1 at 2016-06-25 04:57:55 +0800
+
+
+Started GET "/assets/bootstrap/dropdown.self-e56c2ffee4618411d43ecf15c89273f6223847ad756e1cd17545d04afa732ed4.js?body=1" for ::1 at 2016-06-25 04:57:55 +0800
+
+
+Started GET "/assets/bootstrap/modal.self-62463080dba6b9d024ff0a3192da0e76eacbc683194f3395047c6f5cfa0acb59.js?body=1" for ::1 at 2016-06-25 04:57:55 +0800
+
+
+Started GET "/assets/bootstrap/scrollspy.self-52afd90e8ba97d9f08617a13986e8869d6c4a45751c0bff59a6f91241e722aca.js?body=1" for ::1 at 2016-06-25 04:57:56 +0800
+
+
+Started GET "/assets/bootstrap/tab.self-dad0d5c377f9fae26394484535ebb23ccf68afae084f896af6ea4cdf8c9f6ae0.js?body=1" for ::1 at 2016-06-25 04:57:56 +0800
+
+
+Started GET "/assets/bootstrap/transition.self-3b268d4cd8c79e46ded7392885f72f64ffb5b0d49948a12b8cf9779f6163e13a.js?body=1" for ::1 at 2016-06-25 04:57:56 +0800
+
+
+Started GET "/assets/bootstrap/tooltip.self-facdc69246a072acb927ded77ff655f7c27a518b9357fddd45d119fbc8a0ab9f.js?body=1" for ::1 at 2016-06-25 04:57:56 +0800
+
+
+Started GET "/assets/bootstrap/popover.self-210cff1fb4b72b71a29b5122180cb5937c8145cd13a934dc838280f1d9607a3e.js?body=1" for ::1 at 2016-06-25 04:57:56 +0800
+
+
+Started GET "/assets/comments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-06-25 04:57:56 +0800
+
+
+Started GET "/assets/bootstrap-sprockets.self-fbfa5ad7d9aa0afe439ec4ff3883acc4cb92b62cb67c40d674320c9aa1d4642d.js?body=1" for ::1 at 2016-06-25 04:57:56 +0800
+
+
+Started GET "/assets/posts.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-06-25 04:57:56 +0800
+
+
+Started GET "/assets/profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-06-25 04:57:56 +0800
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-06-25 04:57:56 +0800
+
+
+Started GET "/profile/1" for ::1 at 2016-06-25 04:59:24 +0800
+Processing by ProfilesController#info as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.9ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE (user_id = 1)[0m
+  [1m[35mComment Load (0.7ms)[0m  SELECT "comments".* FROM "comments" WHERE (user_id = 1)
+  Rendered profiles/info.html.erb within layouts/application (47.3ms)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1014ms (Views: 999.6ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-06-25 04:59:25 +0800
+
+
+Started GET "/assets/bootstrap/affix.self-3555752f8a930795ee9e56751a52e6871104ae85d01b3ab8363da3802a5ecc78.js?body=1" for ::1 at 2016-06-25 04:59:26 +0800
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-06-25 04:59:26 +0800
+
+
+Started GET "/assets/bootstrap/alert.self-d8b7bd612b3dcfdefb7b5539b9d5848d66ccbd3e7af8bb8d48bfb3288aaa7be8.js?body=1" for ::1 at 2016-06-25 04:59:26 +0800
+
+
+Started GET "/assets/application.self-97bf12be2a7b71a68377d6e36d4d97115aefe7784a89b3a5bfcec7e0f38591f0.css?body=1" for ::1 at 2016-06-25 04:59:26 +0800
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-06-25 04:59:26 +0800
+
+
+Started GET "/assets/bootstrap/button.self-e74d33ba39500940a78d6fa4d2d64f6ca7fd86d60a2149641f7fde7ba711d8a1.js?body=1" for ::1 at 2016-06-25 04:59:26 +0800
+
+
+Started GET "/assets/bootstrap/carousel.self-35d204878d906298e55bc24553e11fd89b980fc4ffe5792fe36af8c0da289c54.js?body=1" for ::1 at 2016-06-25 04:59:26 +0800
+
+
+Started GET "/assets/bootstrap/collapse.self-056c40532d9f0f126ec17e839f60c942f573fbd61a086e7f156306e3fc5e8c1f.js?body=1" for ::1 at 2016-06-25 04:59:26 +0800
+
+
+Started GET "/assets/bootstrap/dropdown.self-e56c2ffee4618411d43ecf15c89273f6223847ad756e1cd17545d04afa732ed4.js?body=1" for ::1 at 2016-06-25 04:59:26 +0800
+
+
+Started GET "/assets/bootstrap/scrollspy.self-52afd90e8ba97d9f08617a13986e8869d6c4a45751c0bff59a6f91241e722aca.js?body=1" for ::1 at 2016-06-25 04:59:27 +0800
+
+
+Started GET "/assets/bootstrap/modal.self-62463080dba6b9d024ff0a3192da0e76eacbc683194f3395047c6f5cfa0acb59.js?body=1" for ::1 at 2016-06-25 04:59:27 +0800
+
+
+Started GET "/assets/bootstrap/tab.self-dad0d5c377f9fae26394484535ebb23ccf68afae084f896af6ea4cdf8c9f6ae0.js?body=1" for ::1 at 2016-06-25 04:59:27 +0800
+
+
+Started GET "/assets/bootstrap/transition.self-3b268d4cd8c79e46ded7392885f72f64ffb5b0d49948a12b8cf9779f6163e13a.js?body=1" for ::1 at 2016-06-25 04:59:27 +0800
+
+
+Started GET "/assets/bootstrap/tooltip.self-facdc69246a072acb927ded77ff655f7c27a518b9357fddd45d119fbc8a0ab9f.js?body=1" for ::1 at 2016-06-25 04:59:27 +0800
+
+
+Started GET "/assets/bootstrap/popover.self-210cff1fb4b72b71a29b5122180cb5937c8145cd13a934dc838280f1d9607a3e.js?body=1" for ::1 at 2016-06-25 04:59:27 +0800
+
+
+Started GET "/assets/bootstrap-sprockets.self-fbfa5ad7d9aa0afe439ec4ff3883acc4cb92b62cb67c40d674320c9aa1d4642d.js?body=1" for ::1 at 2016-06-25 04:59:27 +0800
+
+
+Started GET "/assets/comments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-06-25 04:59:27 +0800
+
+
+Started GET "/assets/posts.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-06-25 04:59:27 +0800
+
+
+Started GET "/assets/profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-06-25 04:59:27 +0800
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-06-25 04:59:27 +0800
+
+
+Started GET "/posts" for ::1 at 2016-06-25 04:59:36 +0800
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (1.4ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY updated_at DESC
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 34]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 34]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 13]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 13]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["post_id", 13]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 33]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 33]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 32]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 32]]
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 19]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 19]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 16]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 16]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["post_id", 16]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 17]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 17]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["post_id", 17]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 18]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 18]]
+  Rendered posts/index.html.erb within layouts/application (637.1ms)
+Completed 200 OK in 1834ms (Views: 1787.5ms | ActiveRecord: 14.0ms)
+
+
+Started GET "/profile/1" for ::1 at 2016-06-25 04:59:39 +0800
+Processing by ProfilesController#info as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (1.1ms)[0m  SELECT "posts".* FROM "posts" WHERE (user_id = 1)
+  [1m[36mComment Load (0.8ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE (user_id = 1)[0m
+  Rendered profiles/info.html.erb within layouts/application (49.6ms)
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Completed 200 OK in 1243ms (Views: 1225.7ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/posts" for ::1 at 2016-06-25 04:59:43 +0800
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (23.5ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY updated_at DESC[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 34]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 34]]
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 13]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 13]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1[0m  [["post_id", 13]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 33]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 33]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 32]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 32]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 19]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 19]]
+  [1m[36mCACHE (21.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 16]]
+  [1m[36mCACHE (0.4ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 16]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["post_id", 16]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 17]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 17]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ?  ORDER BY "comments"."id" DESC LIMIT 1  [["post_id", 17]]
+  [1m[36mCACHE (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 18]]
+  [1m[36mCACHE (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 18]]
+  Rendered posts/index.html.erb within layouts/application (679.2ms)
+Completed 200 OK in 1876ms (Views: 1809.8ms | ActiveRecord: 57.8ms)
+
+
+Started GET "/posts/13" for ::1 at 2016-06-25 04:59:47 +0800
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[35mPost Load (1.1ms)[0m  SELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", 13]]
+  [1m[36m (0.6ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.9ms)[0m  UPDATE "posts" SET "clicked" = ?, "updated_at" = ? WHERE "posts"."id" = ?  [["clicked", 12], ["updated_at", "2016-06-24 20:59:47.105920"], ["id", 13]]
+  [1m[36m (3.3ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCategory Load (0.8ms)[0m  [1mSELECT "categories".* FROM "categories" INNER JOIN "post_categoryships" ON "categories"."id" = "post_categoryships"."category_id" WHERE "post_categoryships"."post_id" = ?[0m  [["post_id", 13]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 13]]
+  [1m[36mComment Load (0.9ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 13]]
+  [1m[35mCACHE (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered posts/show.html.erb within layouts/application (242.6ms)
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1539ms (Views: 1429.5ms | ActiveRecord: 12.4ms)
+
+
+Started GET "/posts/13/comments/23/edit" for ::1 at 2016-06-25 04:59:50 +0800
+Processing by CommentsController#edit as HTML
+  Parameters: {"post_id"=>"13", "id"=>"23"}
+  [1m[35mPost Load (0.6ms)[0m  SELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", 13]]
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.9ms)[0m  SELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ? AND "comments"."id" = ? LIMIT 1  [["post_id", 13], ["id", 23]]
+  Rendered comments/_form.html.erb (27.9ms)
+  Rendered comments/edit.html.erb within layouts/application (50.3ms)
+Completed 200 OK in 1339ms (Views: 1277.6ms | ActiveRecord: 2.0ms)
+
+
+Started PATCH "/posts/13/comments/23" for ::1 at 2016-06-25 04:59:55 +0800
+Processing by CommentsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"kB+sGFLBHUL6dCdbK+PiC84q1v+4JpWnpgvHoLXmBLfEG75kOi5yqsmUdQwfQy7w/mReSzQv2R0Ytmlh8bBYIA==", "comment"=>{"content"=>"23r23eee"}, "commit"=>"Update", "post_id"=>"13", "id"=>"23"}
+  [1m[36mPost Load (0.6ms)[0m  [1mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 13]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ? AND "comments"."id" = ? LIMIT 1[0m  [["post_id", 13], ["id", 23]]
+  [1m[35m (0.6ms)[0m  begin transaction
+  [1m[36mSQL (0.9ms)[0m  [1mUPDATE "comments" SET "content" = ?, "updated_at" = ? WHERE "comments"."id" = ?[0m  [["content", "23r23eee"], ["updated_at", "2016-06-24 20:59:55.638354"], ["id", 23]]
+  [1m[35m (3.4ms)[0m  commit transaction
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.8ms)[0m  UPDATE "posts" SET "comment_last_updated_at" = ?, "updated_at" = ? WHERE "posts"."id" = ?  [["comment_last_updated_at", "2016-06-24 20:59:55.638354"], ["updated_at", "2016-06-24 20:59:55.694019"], ["id", 13]]
+  [1m[36m (3.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/posts/13
+Completed 302 Found in 184ms (ActiveRecord: 11.9ms)
+
+
+Started GET "/posts/13" for ::1 at 2016-06-25 04:59:55 +0800
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[35mPost Load (0.6ms)[0m  SELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", 13]]
+  [1m[36m (0.6ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  UPDATE "posts" SET "clicked" = ?, "updated_at" = ? WHERE "posts"."id" = ?  [["clicked", 13], ["updated_at", "2016-06-24 20:59:55.870656"], ["id", 13]]
+  [1m[36m (2.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCategory Load (0.5ms)[0m  [1mSELECT "categories".* FROM "categories" INNER JOIN "post_categoryships" ON "categories"."id" = "post_categoryships"."category_id" WHERE "post_categoryships"."post_id" = ?[0m  [["post_id", 13]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 13]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 13]]
+  [1m[35mCACHE (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered posts/show.html.erb within layouts/application (117.3ms)
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1479ms (Views: 1379.7ms | ActiveRecord: 8.3ms)

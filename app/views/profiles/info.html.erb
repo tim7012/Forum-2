@@ -2,25 +2,29 @@
  <h2>Email : <%= @profile.email %></h2>
  <h2>First Name : <%= @profile.first_name %></h2>
  <h2>Last Name : <%= @profile.last_name %></h2>
+ <h2>Bio: <%= @profile.bio %></h2>
 
 
- <hr>
+  <hr>
 
- <h2>This user's Posts and Comments</h2>
-   <ul>
+  <h2>This user's posts</h2>
+    <ul>
       <% @posts.each do |p| %>
-          <li>
-            <%= link_to p.title, post_path(p) %>
-          </li>
+        <li>
+          <%= link_to p.title, post_path(p) %>
+        </li>
       <% end %>
-  <br>
+    </ul>
+
+  <h2>This user's comments</h2>
+    <ul>
       <% @comments.each do |comment| %>
-       <li>
-         <%= comment.content %>
-       </li>
+        <li>
+          <%= comment.content %>
+        </li>
       <% end %>
-   </ul>
- <hr>
+    </ul>
+  <hr>
 
 
 <%= link_to "Back to Index", posts_path %>
