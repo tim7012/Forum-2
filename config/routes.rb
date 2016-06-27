@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         get :about
     end
 
+
   end
   get '/profile/:id' => 'profiles#info', :as => "profile_info"
   root :to => 'posts#index'

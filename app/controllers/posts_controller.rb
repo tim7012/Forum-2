@@ -74,11 +74,10 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update(post_params)
+    @comment = @post.comments.find(params[:id])
+    if @comment.user != current_user
       flash[:notice] = "Update successfully"
       redirect_to :action => :index
-    else
-      render :action => :edit
     end
   end
 
@@ -98,6 +97,8 @@ class PostsController < ApplicationController
     @posts = Post.all
     @comments = Comment.all
   end
+
+
 
   protected
 

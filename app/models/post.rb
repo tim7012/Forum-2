@@ -8,6 +8,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :user
 
+
   # def editable_by?(user)
   #    user == author
   # end

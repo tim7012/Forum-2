@@ -7,14 +7,21 @@
 
   <hr>
 
-  <h2>This user's posts</h2>
+<h2>This user's posts</h2>
+<%if current_user.blank? %>
   <ul>
-    <% @posts.each do |p| %>
+    <% @posts.where(:status == "release").each do |p| %>
       <li>
         <%= link_to p.title, post_path(p) %>
       </li>
     <% end %>
   </ul>
+<% else %>
+  <% @posts.where("user_id = ? or status = ?", current_user.id, "release").each do |p| %>
+  <li>
+    <%= link_to p.title, post_path(p) %>
+  </li>
+<% end %>
 
   <h2>This user's comments</h2>
   <ul>
@@ -27,6 +34,7 @@
 
 
 
+<% end %>
 
 <%= link_to "Back to Index", posts_path %>
 
