@@ -8,23 +8,23 @@ class PostsController < ApplicationController
     @posts = Post.all
 
     if params[:sort] == "Ruby"
-      @posts = Category.find_by(:name =>"Ruby").posts.where(:draft => false)
+      @posts = Category.find_by(:name =>"Ruby").posts.where(:draft => false).page(params[:page]).per(5)
     elsif params[:sort] == "Perl"
-      @posts = Category.find_by(:name =>"Perl").posts.where(:draft => false)
+      @posts = Category.find_by(:name =>"Perl").posts.where(:draft => false).page(params[:page]).per(5)
     elsif params[:sort] == "Java"
-      @posts = Category.find_by(:name =>"Java").posts.where(:draft => false)
+      @posts = Category.find_by(:name =>"Java").posts.where(:draft => false).page(params[:page]).per(5)
     else
-      @posts = Post.all.order("updated_at DESC").where(:draft => false)
+      @posts = Post.all.order("updated_at DESC").where(:draft => false).page(params[:page]).per(5)
     end
 
 
     if params[:order]
       if params[:order] == 'last_comment_time'
-        @posts = Post.all.order("comment_last_updated_at DESC").where(:draft => false)
+        @posts = Post.all.order("comment_last_updated_at DESC").where(:draft => false).page(params[:page]).per(5)
       elsif params[:order] && params[:order] == 'comment_number'
-        @posts = Post.all.order("comments_count DESC").where(:draft => false)
+        @posts = Post.all.order("comments_count DESC").where(:draft => false).page(params[:page]).per(5)
       elsif params[:order] && params[:order] == "topic_clicks"
-        @posts = Post.all.order("clicked DESC").where(:draft => false)
+        @posts = Post.all.order("clicked DESC").where(:draft => false).page(params[:page]).per(5)
       end
     end
 
@@ -36,7 +36,6 @@ class PostsController < ApplicationController
     # end
 
     # @categories = Category.all
-    # @posts = Post.page(params[:page]).per(5)
 
   end
 
