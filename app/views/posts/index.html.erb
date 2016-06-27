@@ -3,8 +3,10 @@
 <%= link_to 'Sort by Ruby', posts_path(:sort => "Ruby") %>
 <%= link_to 'Sort by Perl', posts_path(:sort => "Perl") %>
 <%= link_to 'Sort by Java', posts_path(:sort => "Java") %>
+<%= link_to 'None', posts_path %>
 
 <br><br>
+<p><%= link_to "New Post", new_post_path %></p>
 <p><%= link_to 'Order by lastest comment time', posts_path(:order => 'last_comment_time') %></p>
 <p><%= link_to 'Order by comment number', posts_path(:order =>'comment_number')%></p>
 <p><%= link_to 'Order by clicks', posts_path(:order => 'topic_clicks') %></p>
@@ -18,6 +20,7 @@
     <td>Post ID</td>
     <td>Comments</td>
     <td>Clicks</td>
+    <td>Status</td>
     <td>Last comment time</td>
 
   </tr>
@@ -26,10 +29,11 @@
 
       <tr>
         <td><%= link_to post.title, post_path(post)%></td>
-        <td><%= link_to post.author.email, profile_info_path(:id => post.author.id) %></td>
+        <td><%= link_to post.user.email, profile_info_path(:id => post.user.id) %></td>
         <td><%= post.id %></td>
         <td><%= post.comments.count %></td>
         <td><%= post.clicked %></td>
+        <td><%= post.status %></td>
         <td>
           <% if post.comments.count != 0 %>
             <%= post.comments.last.updated_at  %>
@@ -37,7 +41,7 @@
               No comments
           <% end %>
         </td>
-        <% if post.editable_by?(current_user) %>
+        <%# if post.editable_by?(current_user) %>
           <td><%= link_to "Edit", edit_post_path(post), :class => "btn btn-primary"%></td>
           <td><%= link_to "Delete", post_path(post), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "Are you sure?"} %></td>
 
@@ -47,12 +51,12 @@
 
       </tr>
 
-    <% end %>
+
 
   <% end %>
 </table>
 
 <%= paginate @posts %>
-<br>
-<%= link_to "New Post", new_post_path %>
+
+
 

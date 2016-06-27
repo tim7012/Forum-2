@@ -1,54 +1,52 @@
 class PostsController < ApplicationController
 
-  before_action :set_post, :only => [:show]
-  before_action :authenticate_user!, :except => [:index, :show]
+  before_action :set_post, :only => [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:index]
 
   def index
 
-    @posts = Post.all
 
-    if params[:sort] == "Ruby"
-      @posts = Category.find_by(:name =>"Ruby").posts.where(:draft => false).page(params[:page]).per(5)
-    elsif params[:sort] == "Perl"
-      @posts = Category.find_by(:name =>"Perl").posts.where(:draft => false).page(params[:page]).per(5)
-    elsif params[:sort] == "Java"
-      @posts = Category.find_by(:name =>"Java").posts.where(:draft => false).page(params[:page]).per(5)
+    if params[:sort]&&params[:sort] == "Ruby"
+      @posts = Category.find_by(:name =>"Ruby").posts
+    elsif params[:sort]&&params[:sort] == "Perl"
+      @posts = Category.find_by(:name =>"Perl").posts
+    elsif params[:sort]&&params[:sort] == "Java"
+      @posts = Category.find_by(:name => "Java").posts
     else
-      @posts = Post.all.order("updated_at DESC").where(:draft => false).page(params[:page]).per(5)
+      @posts = Post.all.order("updated_at DESC")
     end
 
+    if current_user.blank?
+      @posts = @posts.where(:status == "release")
+    else
+      @posts = @posts.where("user_id = ? or status = ?", current_user.id, "release")
+    end
 
     if params[:order]
       if params[:order] == 'last_comment_time'
-        @posts = Post.all.order("comment_last_updated_at DESC").where(:draft => false).page(params[:page]).per(5)
+        @posts = @posts.order("comment_last_updated_at DESC")
       elsif params[:order] && params[:order] == 'comment_number'
-        @posts = Post.all.order("comments_count DESC").where(:draft => false).page(params[:page]).per(5)
+        @posts = @posts.order("comments_count DESC")
       elsif params[:order] && params[:order] == "topic_clicks"
-        @posts = Post.all.order("clicked DESC").where(:draft => false).page(params[:page]).per(5)
+        @posts = @posts.order("clicked DESC")
       end
     end
-
-
-    # if current_user.nil?
-    #   @posts = @posts.where(:draft=>"false")
-    # else
-    #   @posts = @posts.where("user_id =? or draft=?", current_user.id,"false")
-    # end
-
-    # @categories = Category.all
+    @posts = @posts.page(params[:page]).per(6)
+    @categories = Category.all
 
   end
 
   def show
+
     @post.clicked += 1
     @post.save
 
-    # @comments = @post.comments.order("updated_at desc")
-    if current_user.nil?
-      @comments = @post.comments.where(:draft=>"false").order("updated_at desc")
+    if current_user
+      @comments = @post.comments.where(:status=>"release").order("updated_at desc")
     else
-      @comments = @post.comments.where("user_id =? or draft=?", current_user.id,"false").order("updated_at desc")
+      @comments = @post.comments.where("user_id =? or status=?", current_user.id,"release").order("updated_at desc")
     end
+
   end
 
   def new
@@ -57,9 +55,10 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.author = current_user
+    @post.user = current_user
 
     if @post.save
+
       flash[:notice] = "Post was successfully created"
       redirect_to :action => :index
     else
@@ -68,11 +67,13 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = current_user.posts.find(params[:id])
+    if @post.user != current_user
+      flash[:alert] = "Not authorized"
+      redirect_to posts_path
+    end
   end
 
   def update
-    @post = current_user.posts.find(params[:id])
     if @post.update(post_params)
       flash[:notice] = "Update successfully"
       redirect_to :action => :index
@@ -82,10 +83,14 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = current_user.posts.find(params[:id])
-    @post.destroy
-    redirect_to posts_path :action => :index
-    flash[:alert] = "The post was successfully deleted"
+    if @post.user != current_user
+      flash[:alert] = "Not authorized"
+      redirect_to posts_path
+    else
+      @post.destroy
+      flash[:alert] = "The post was successfully deleted"
+      redirect_to posts_path :action => :index
+    end
   end
 
   def about
@@ -101,6 +106,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :clicked, :draft, :category_ids => [])
+    params.require(:post).permit(:title, :content, :clicked, :status, :category_ids => [])
   end
 end

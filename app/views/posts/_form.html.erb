@@ -1,4 +1,3 @@
-<%#CRUD page%>
 <% if @post.errors.any? %>
   <ul>
     <% @post.errors.full_messages.each do |msg| %>
@@ -22,8 +21,8 @@
 </div>
 
 <div>
-  <%= f.label :draft, "Status:" %>
-  <%= f.select :draft, [["draft", "true"],["release", "false"]] %>
+  <%= f.label :status, "Status:" %>
+  <%= f.select :status, [["draft", "draft"],["release", "release"]] %>
 </div>
 
 

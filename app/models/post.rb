@@ -6,10 +6,10 @@ class Post < ActiveRecord::Base
   has_many :post_categoryships
   has_many :categories, :through => :post_categoryships
 
-  belongs_to :author, class_name: "User", foreign_key: :user_id
+  belongs_to :user
 
-  def editable_by?(user)
-     user == author
-  end
+  # def editable_by?(user)
+  #    user == author
+  # end
 
 end

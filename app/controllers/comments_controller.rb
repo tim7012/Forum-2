@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
 before_action :set_post
-before_action :authenticate_user!, :except => [:show]
+
 
 
   def show
@@ -10,7 +10,7 @@ before_action :authenticate_user!, :except => [:show]
 
 
   def new
-    @comment = @post.comments.build
+    @comment = @post.comments.new
 
   end
 
@@ -19,7 +19,7 @@ before_action :authenticate_user!, :except => [:show]
   end
 
   def create
-    @comment = @post.comments.build(comment_params)
+    @comment = @post.comments.new(comment_params)
     @comment.user = current_user
     if @comment.save
       @post.comment_last_updated_at = @comment.updated_at
@@ -31,7 +31,12 @@ before_action :authenticate_user!, :except => [:show]
   end
 
   def edit
-    @comment = @post.comments.find(params[:id])
+    if @post.user != current_user
+      flash[:alert] = "not authorized"
+      redirect_to post_path(@post)
+    else
+      @comment = @post.comments.find(params[:id])
+    end
   end
 
   def update
@@ -46,17 +51,24 @@ before_action :authenticate_user!, :except => [:show]
   end
 
   def destroy
-    @comment = @post.comments.find(params[:id])
-    @comment.destroy
 
-    if @post.comments_count > 1
-      @post.comment_last_updated_at = Comment.order("updated_at").last.updated_at
+    if @post.user != current_user
+      flash[:alert] = "Not authorized"
+      redirect_to post_path(@post)
     else
-      @post.comment_last_updated_at = nil
-    end
-    @post.save
+      @comment = @post.comments.find(params[:id])
+      @comment.destroy
 
-    redirect_to post_path(@post)
+
+      if @post.comments_count > 1
+        @post.comment_last_updated_at = Comment.order("updated_at").last.updated_at
+      else
+        @post.comment_last_updated_at = nil
+      end
+      @post.save
+
+      redirect_to post_path(@post)
+    end
   end
 
   protected
@@ -66,7 +78,7 @@ before_action :authenticate_user!, :except => [:show]
   end
 
   def comment_params
-    params.require(:comment).permit(:content, :draft)
+    params.require(:comment).permit(:content)
   end
 
 end

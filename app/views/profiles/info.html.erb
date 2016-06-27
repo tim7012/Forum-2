@@ -1,4 +1,4 @@
-<!--  <h1><%= @profile.try(:short_name) %></h1> -->
+
  <h2>Email : <%= @profile.email %></h2>
  <h2>First Name : <%= @profile.first_name %></h2>
  <h2>Last Name : <%= @profile.last_name %></h2>
@@ -8,36 +8,24 @@
   <hr>
 
   <h2>This user's posts</h2>
-    <ul>
-      <% @posts.each do |p| %>
-        <li>
-          <%= link_to p.title, post_path(p) %>
-        </li>
-      <% end %>
-    </ul>
+  <ul>
+    <% @posts.each do |p| %>
+      <li>
+        <%= link_to p.title, post_path(p) %>
+      </li>
+    <% end %>
+  </ul>
 
   <h2>This user's comments</h2>
-    <ul>
-      <% @comments.each do |comment| %>
-        <li>
-          <%= link_to comment.post.title, post_path(comment.post) %>
-        </li>
-      <% end %>
-    </ul>
-  <hr>
+  <ul>
+    <% @comments.each do |comment| %>
+      <li>
+        <%= link_to comment.post.title, post_path(comment.post) %>
+      </li>
+    <% end %>
+  </ul>
 
-  <% if @profile  == current_user %>
-    <h2>Draft:</h2>
-      <ul>
-        <% @posts.where(:draft => true).each do |p| %>
-          <li>
-            <%= link_to p.title, edit_post_path(p)%>
-          </li>
-        <% end %>
-      </ul>
-  <% else %>
-    <%# return %>
-  <% end %>
+
 
 
 <%= link_to "Back to Index", posts_path %>
