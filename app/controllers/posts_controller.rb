@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :set_post, :only => [:show, :edit, :update, :destroy]
+  before_action :set_post, :only => [:show, :edit, :update, :destroy, :favourite, :unfavourite]
   before_action :authenticate_user!, :except => [:index]
 
   def index
@@ -96,6 +96,24 @@ class PostsController < ApplicationController
     @users = User.all
     @posts = Post.all
     @comments = Comment.all
+  end
+
+  def favourite
+
+    @favorite = @post.find_my_favourite(current_user)
+    unless @favourite
+      @favourite = FavouritePost.create!(:post => @post, :user => current_user)
+    end
+    redirect_to :back
+  end
+
+  def unfavourite
+
+    @favourite = @post.find_my_favourite(current_user)
+    if @favourite
+      @favourite.destroy
+    end
+    redirect_to :back
   end
 
   protected

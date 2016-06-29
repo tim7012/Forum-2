@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :posts, :dependent => :destroy
   has_many :comments, :dependent => :destroy
 
+  has_many :favourite_posts, :dependent => :destroy
+  has_many :favourites, :through => :favourite_posts, :source => :post, :dependent => :destroy
 
   def short_name
     self.email.split("@").first

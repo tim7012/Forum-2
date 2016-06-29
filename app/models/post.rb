@@ -8,6 +8,13 @@ class Post < ActiveRecord::Base
 
   belongs_to :user
 
+  has_many :favourite_posts, :dependent => :destroy
+  has_many :favourite_by, :through => :favourite_posts, :source => :user, :dependent => :destroy
+
+  def find_my_favourite(user)
+
+    self.favourite_posts.where(:user => user).first
+  end
 
   # def editable_by?(user)
   #    user == author

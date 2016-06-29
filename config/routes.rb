@@ -8,6 +8,10 @@ Rails.application.routes.draw do
         get :about
     end
 
+    member do
+      post :favourite
+      post :unfavourite
+    end
 
   end
   get '/profile/:id' => 'profiles#info', :as => "profile_info"
