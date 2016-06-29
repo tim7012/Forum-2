@@ -17,7 +17,7 @@ class PostsController < ApplicationController
     end
 
     if current_user.blank?
-      @posts = @posts.where(:status == "release")
+      @posts = @posts.where("status = 'release'")
     else
       @posts = @posts.where("user_id = ? or status = ?", current_user.id, "release")
     end
@@ -74,10 +74,11 @@ class PostsController < ApplicationController
   end
 
   def update
-    @comment = @post.comments.find(params[:id])
-    if @comment.user != current_user
-      flash[:notice] = "Update successfully"
-      redirect_to :action => :index
+    if @post.update(post_params)
+       flash[:notice] = "Update successfully"
+       redirect_to :action => :index
+    else
+       render :action => :edit
     end
   end
 
