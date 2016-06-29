@@ -22,6 +22,11 @@ before_action :set_post
     @comment = @post.comments.new(comment_params)
     @comment.user = current_user
     if @comment.save
+      # TODO define a new method for updating comment time
+      # def update_comment_time(options = {})
+      #   self.update!(:last_comment_at = comment.updated_at )
+      # end
+      # e.g. @post.update_comment_time(:comment => @comment)
       @post.comment_last_updated_at = @comment.updated_at
       @post.save
       redirect_to post_path(@post)
@@ -32,6 +37,7 @@ before_action :set_post
 
   def edit
     if @post.user != current_user
+      # Same as posts#edit
       flash[:alert] = "not authorized"
       redirect_to post_path(@post)
     else
@@ -42,7 +48,7 @@ before_action :set_post
   def update
     @comment = @post.comments.find(params[:id])
     if @comment.update(comment_params)
-      @post.comment_last_updated_at = @comment.updated_at
+      @post.comment_last_updated_at = @comment.updated_at # TODO
       @post.save
       redirect_to post_path(@post)
     else
@@ -52,15 +58,15 @@ before_action :set_post
 
   def destroy
 
-    if @post.user != current_user
+    if @post.user != current_user # TODO
       flash[:alert] = "Not authorized"
       redirect_to post_path(@post)
     else
       @comment = @post.comments.find(params[:id])
       @comment.destroy
 
-
       if @post.comments_count > 1
+        # @post.update_comment_time!(Comment.order("updated_at").last)
         @post.comment_last_updated_at = Comment.order("updated_at").last.updated_at
       else
         @post.comment_last_updated_at = nil

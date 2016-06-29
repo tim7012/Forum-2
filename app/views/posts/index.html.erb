@@ -27,32 +27,24 @@
 
   <% @posts.each do |post|%>
 
-      <tr>
-        <td><%= link_to post.title, post_path(post)%></td>
-        <td><%= link_to post.user.email, profile_info_path(:id => post.user.id) %></td>
-        <td><%= post.id %></td>
-        <td><%= post.comments.count %></td>
-        <td><%= post.clicked %></td>
-        <td><%= post.status %></td>
-        <td>
-          <% if post.comments.count != 0 %>
-            <%= post.comments.last.updated_at  %>
-          <% else %>
-              No comments
-          <% end %>
-        </td>
-        <%# if post.editable_by?(current_user) %>
-          <td><%= link_to "Edit", edit_post_path(post), :class => "btn btn-primary"%></td>
-          <td><%= link_to "Delete", post_path(post), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "Are you sure?"} %></td>
-
-
-
-
-
-      </tr>
-
-
-
+    <tr>
+      <td><%= link_to post.title, post_path(post)%></td>
+      <td><%= link_to post.user.email, profile_info_path(:id => post.user.id) %></td>
+      <td><%= post.id %></td>
+      <td><%= post.comments.count %></td>
+      <td><%= post.clicked %></td>
+      <td><%= post.status %></td>
+      <td>
+        <% if post.comments.count != 0 %>
+          <%= post.comments.last.updated_at  %>
+        <% else %>
+            No comments
+        <% end %>
+      </td>
+      <%# if post.editable_by?(current_user) %>
+        <td><%= link_to "Edit", edit_post_path(post), :class => "btn btn-primary"%></td>
+        <td><%= link_to "Delete", post_path(post), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "Are you sure?"} %></td>
+    </tr>
   <% end %>
 </table>
 

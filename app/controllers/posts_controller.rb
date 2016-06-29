@@ -5,7 +5,6 @@ class PostsController < ApplicationController
 
   def index
 
-
     if params[:sort]&&params[:sort] == "Ruby"
       @posts = Category.find_by(:name =>"Ruby").posts
     elsif params[:sort]&&params[:sort] == "Perl"
@@ -16,10 +15,10 @@ class PostsController < ApplicationController
       @posts = Post.all.order("updated_at DESC")
     end
 
-    if current_user.blank?
-      @posts = @posts.where("status = 'release'")
-    else
+    if current_user
       @posts = @posts.where("user_id = ? or status = ?", current_user.id, "release")
+    else
+      @posts = @posts.where("status = 'release'")
     end
 
     if params[:order]
@@ -31,6 +30,7 @@ class PostsController < ApplicationController
         @posts = @posts.order("clicked DESC")
       end
     end
+
     @posts = @posts.page(params[:page]).per(6)
     @categories = Category.all
 
@@ -41,11 +41,7 @@ class PostsController < ApplicationController
     @post.clicked += 1
     @post.save
 
-    if current_user
-      @comments = @post.comments.where(:status=>"release").order("updated_at desc")
-    else
-      @comments = @post.comments.where("user_id =? or status=?", current_user.id,"release").order("updated_at desc")
-    end
+    @comments = @post.comments.where("user_id =? or status=?", current_user.id,"release").order("updated_at desc")
 
   end
 
@@ -68,6 +64,8 @@ class PostsController < ApplicationController
 
   def edit
     if @post.user != current_user
+     # TODO define method in post model
+     # @post.can_edit_by?(current_user)
       flash[:alert] = "Not authorized"
       redirect_to posts_path
     end
@@ -84,6 +82,7 @@ class PostsController < ApplicationController
 
   def destroy
     if @post.user != current_user
+      # TODO
       flash[:alert] = "Not authorized"
       redirect_to posts_path
     else
@@ -98,8 +97,6 @@ class PostsController < ApplicationController
     @posts = Post.all
     @comments = Comment.all
   end
-
-
 
   protected
 
