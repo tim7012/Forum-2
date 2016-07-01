@@ -36,12 +36,13 @@ before_action :set_post
   end
 
   def edit
-    if @post.user != current_user
+    if current_user.author?(@post)||current_user.admin?
       # Same as posts#edit
+      @comment = @post.comments.find(params[:id])
+    else
+
       flash[:alert] = "not authorized"
       redirect_to post_path(@post)
-    else
-      @comment = @post.comments.find(params[:id])
     end
   end
 
@@ -58,10 +59,8 @@ before_action :set_post
 
   def destroy
 
-    if @post.user != current_user # TODO
-      flash[:alert] = "Not authorized"
-      redirect_to post_path(@post)
-    else
+    if current_user.author?(@post)||current_user.admin?
+    # TODO
       @comment = @post.comments.find(params[:id])
       @comment.destroy
 
@@ -73,8 +72,11 @@ before_action :set_post
       end
       @post.save
 
-      redirect_to post_path(@post)
+    else
+      flash[:alert] = "Not authorized"
     end
+
+    redirect_to post_path(@post)
   end
 
   protected

@@ -16,8 +16,4 @@ class Post < ActiveRecord::Base
     self.favourite_posts.where(:user => user).first
   end
 
-  # def editable_by?(user)
-  #    user == author
-  # end
-
 end

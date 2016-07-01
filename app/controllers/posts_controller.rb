@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   before_action :set_post, :only => [:show, :edit, :update, :destroy, :favourite, :unfavourite]
-  before_action :authenticate_user!, :except => [:index]
+  before_action :authenticate_user!, :except => [:index, :show]
 
   def index
 
@@ -15,9 +15,11 @@ class PostsController < ApplicationController
       @posts = Post.all.order("updated_at DESC")
     end
 
-    if current_user
+    if current_user &&current_user.admin?
+      @posts = Post.all.order("updated_at DESC")
+    elsif current_user
       @posts = @posts.where("user_id = ? or status = ?", current_user.id, "release")
-    else
+    elsif
       @posts = @posts.where("status = 'release'")
     end
 
@@ -41,7 +43,9 @@ class PostsController < ApplicationController
     @post.clicked += 1
     @post.save
 
-    @comments = @post.comments.where("user_id =? or status=?", current_user.id,"release").order("updated_at desc")
+
+
+    @comments = @post.comments.where("user_id = current_user.id").order("updated_at desc")
 
   end
 
@@ -63,9 +67,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    if @post.user != current_user
-     # TODO define method in post model
-     # @post.can_edit_by?(current_user)
+    unless current_user.author?(@post)||current_user.admin?
       flash[:alert] = "Not authorized"
       redirect_to posts_path
     end
@@ -74,22 +76,21 @@ class PostsController < ApplicationController
   def update
     if @post.update(post_params)
        flash[:notice] = "Update successfully"
-       redirect_to :action => :index
+       redirect_to posts_path
     else
        render :action => :edit
     end
   end
 
   def destroy
-    if @post.user != current_user
-      # TODO
-      flash[:alert] = "Not authorized"
-      redirect_to posts_path
-    else
+
+    if current_user.author?(@post)||current_user.admin?
       @post.destroy
       flash[:alert] = "The post was successfully deleted"
-      redirect_to posts_path :action => :index
+    else
+      flash[:alert] = "Not authorized"
     end
+    redirect_to posts_path
   end
 
   def about
@@ -100,7 +101,7 @@ class PostsController < ApplicationController
 
   def favourite
 
-    @favorite = @post.find_my_favourite(current_user)
+    @favourite = @post.find_my_favourite(current_user)
     unless @favourite
       @favourite = FavouritePost.create!(:post => @post, :user => current_user)
     end

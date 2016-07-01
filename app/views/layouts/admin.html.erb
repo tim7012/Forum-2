@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+   <!-- if @page_title is set then show, or show "Event application"-->
+   <title><%=@page_title || "Post application"%></title>
+   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+   <%= csrf_meta_tags %>
+ </head>
+ <body>
+
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+
+   <h1>Admin Interface</h1>
+
+         <% if flash[:notice].present? %>
+           <div class ="alert alert-success" role="alert">
+             <%= flash[:notice] %>
+           </div>
+         <% end %>
+
+         <% if flash[:alert].present? %>
+           <div class ="alert alert-danger" role="alert">
+             <%= flash[:alert] %>
+           </div>
+         <% end %>
+
+         <%= yield %>
+
+         <%= link_to 'Index', posts_path %>
+       </div>
+     </div>
+   </div>
+
+ </body>
+ </html>

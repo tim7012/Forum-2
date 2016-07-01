@@ -19,21 +19,26 @@
 </p>
 <br>
 
-<%= link_to "New Comment", new_post_comment_path(@post)%>
+<% if current_user %>
+  <%= link_to "New Comment", new_post_comment_path(@post)%>
+<%end%>
+
 <p>Total comments:<%= @post.comments.count%></p>
 
 <table class="table">
   <tr>
-    <td>Comment</td>
-    <td>User</td>
+    <td>Comment:</td>
+
   </tr>
   <% @post.comments.each do |c|%>
     <tr>
 
       <td><%= c.content %></td>
-      <td><%=c.user.email%></td>
-      <td><%= link_to "Edit", edit_post_comment_path(@post, c), :class => "btn btn-primary"%></td>
-      <td><%= link_to "Delete", post_comment_path(@post, c), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "Are you sure?"} %></td>
+      <td><%#=c.user.email%></td>
+      <% if current_user && (current_user.author?(@post)||current_user.admin?)%>
+        <td><%= link_to "Edit", edit_post_comment_path(@post, c), :class => "btn btn-primary"%></td>
+        <td><%= link_to "Delete", post_comment_path(@post, c), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "Are you sure?"} %></td>
+      <%end%>
     </tr>
   <%end%>
 </table>
