@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :posts # default ,:controller => "admin::posts"
+    resources :users
+    resources :categories
   end
 
   root :to => 'posts#index'

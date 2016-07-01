@@ -1,0 +1,19 @@
+<h2><%=@user.short_name%></h2>
+
+<h4>email:  <%=@user.email%></h4>
+<h4>bio:  <%=@user.bio%></h4>
+<h4>times of login:  <%=@user.sign_in_count%></h4>
+<h4>registration date:  <%=@user.created_at.strftime('%b %d %Y')%></h4>
+<h4>admin:  <%=@user.role =="admin"? "Yes" : "No"%></h4>
+
+<hr>
+
+<div>
+  <%= form_tag admin_user_path(@user), :method => :patch do %>
+    <div class="form-group">
+      <%=label :admin, "set authorization"%>
+      <%=select_tag :admin, options_for_select(["admin","not admin"]), :class=>"form-control"%>
+    </div>
+    <%= submit_tag "Update", :class => "btn btn-info"%>
+  <% end %>
+</div>
