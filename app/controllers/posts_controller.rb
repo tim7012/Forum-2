@@ -75,8 +75,12 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-       flash[:notice] = "Update successfully"
-       redirect_to posts_path
+      if params[:destroy_logo]
+          @post.logo = nil
+          @post.save
+      end
+        flash[:notice] = "Update successfully"
+        redirect_to posts_path
     else
        render :action => :edit
     end
@@ -124,6 +128,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :clicked, :status, :category_ids => [])
+    params.require(:post).permit(:title, :content, :clicked, :status, :logo, :category_ids => [])
   end
 end

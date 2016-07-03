@@ -12,9 +12,10 @@
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-/log/*
+/log/*.log
 !/log/.keep
-!/log/development.log
 /tmp
+/*.byebug_history
+/public/system
 
-fb.yml
+fb.ymllog

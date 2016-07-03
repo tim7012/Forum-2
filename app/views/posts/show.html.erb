@@ -23,9 +23,16 @@
 </p>
 <br>
 
+<% if @post.logo.exists? %>
+  <%= link_to @post.logo.url, :target => "_blank" do %>
+    <%= image_tag(@post.logo.url(:thumb)) %>
+  <% end %>
+<% end %>
+
 <% if current_user %>
   <%= link_to "New Comment", new_post_comment_path(@post)%>
 <%end%>
+
 
 <p>Total comments:<%= @post.comments.count%></p>
 
@@ -38,6 +45,13 @@
     <tr>
 
       <td><%= c.content %></td>
+      <td>
+        <% if c.logo.exists? %>
+          <%= link_to c.logo.url, :target => "_blank" do %>
+            <%= image_tag(c.logo.url(:thumb)) %>
+          <% end %>
+        <% end %>
+      </td>
       <td><%#=c.user.email%></td>
       <% if current_user && (current_user.author?(@post)||current_user.admin?)%>
         <td><%= link_to "Edit", edit_post_comment_path(@post, c), :class => "btn btn-primary"%></td>

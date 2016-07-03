@@ -20,6 +20,14 @@
   <%= f.text_area :content %>
 </div>
 
+<div class="form-group">
+  <%= f.label :logo, "LOGO檔案" %>
+  <%= f.file_field :logo %>
+  <% if @post.logo.exists? %>
+    <%= check_box_tag "destroy_logo", "1" %> 刪除檔案
+  <% end %>
+</div>
+
 <div>
   <%= f.label :status, "Status:" %>
   <%= f.select :status, [["draft", "draft"],["release", "release"]] %>

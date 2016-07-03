@@ -48,6 +48,10 @@ before_action :set_post
 
   def update
     @comment = @post.comments.find(params[:id])
+    if params[:destroy_logo]
+      @comment.logo = nil
+      @comment.save
+    end
     if @comment.update(comment_params)
       @post.comment_last_updated_at = @comment.updated_at # TODO
       @post.save
@@ -86,7 +90,7 @@ before_action :set_post
   end
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content, :logo)
   end
 
 end
