@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :set_post, :only => [:show, :edit, :update, :destroy, :favourite, :unfavourite]
+  before_action :set_post, :only => [:show, :edit, :update, :destroy, :favourite, :unfavourite, :like, :dislike]
   before_action :authenticate_user!, :except => [:index, :show]
 
   def index
@@ -124,6 +124,28 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html {redirect_to :back}
       format.js {render "favourite"}
+    end
+  end
+
+  def like
+    @like = @post.find_my_like(current_user)
+    unless @like
+      @like = Like.create!(:post => @post, :user => current_user)
+    end
+
+    respond_to do |format|
+      format.html{redirect_to :back}
+      format.js
+    end
+  end
+
+  def dislike
+    @like = @post.find_my_like(current_user)
+    @like.destroy if @like
+
+    respond_to do |format|
+      format.html{redirect_to :back}
+      format.js {render "like"}
     end
   end
 
