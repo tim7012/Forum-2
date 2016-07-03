@@ -1,0 +1,5 @@
+<% unless @post.find_my_favourite(current_user) %>
+  <%= link_to "Favourite", favourite_post_path(@post), :method => :post, :remote => true, :class => "btn btn-primary"%>
+<%else%>
+  <%= link_to "Unfavourite", unfavourite_post_path(@post), :method => :post, :remote => true, :class => "btn btn-primary"%>
+<%end%>

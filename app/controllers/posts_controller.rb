@@ -109,7 +109,10 @@ class PostsController < ApplicationController
     unless @favourite
       @favourite = FavouritePost.create!(:post => @post, :user => current_user)
     end
-    redirect_to :back
+    respond_to do |format|
+      format.html{redirect_to :back}
+      format.js
+    end
   end
 
   def unfavourite
@@ -118,7 +121,10 @@ class PostsController < ApplicationController
     if @favourite
       @favourite.destroy
     end
-    redirect_to :back
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.js {render "favourite"}
+    end
   end
 
   protected

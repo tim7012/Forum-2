@@ -4,11 +4,9 @@
 
 <div class="favourite pull-right">
   <% if current_user%>
-    <%unless @post.find_my_favourite(current_user) %>
-      <%= link_to "Favourite", favourite_post_path(@post), :method => :post, :class=>"btn btn-primary"%>
-    <%else%>
-      <%= link_to "Unfavourite", unfavourite_post_path(@post), :method => :post, :class=>"btn btn-primary"%>
-    <%end%>
+    <span id ="favourite-block"%>
+      <%= render "favourite"%>
+    </span>
   <%end%>
 </div>
 
