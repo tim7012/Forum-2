@@ -35,6 +35,17 @@
   <% end %>
 <% end %>
 
+<table class="table">
+  <tr><%="People who like:"%></tr>
+  <h5>
+    <tr>
+    <% @post.likes_by.each do |l| %>
+      <td><%= l.email %></td>
+    <% end %>
+    </tr>
+  </h5>
+</table>
+
 <% if current_user %>
   <%= link_to "New Comment", new_post_comment_path(@post)%>
 <%end%>
