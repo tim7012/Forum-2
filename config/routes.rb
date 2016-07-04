@@ -13,6 +13,8 @@ Rails.application.routes.draw do
       post :unfavourite
       post :like
       post :dislike
+      post :subscribe
+      post :unsubscribe
     end
 
   end

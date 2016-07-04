@@ -1,0 +1,5 @@
+<% unless @post.find_my_subscribe(current_user) %>
+  <%= link_to "訂閱", subscribe_post_path(@post), :method => :post, :remote => true, :class => "btn btn-primary" %>
+<% else %>
+  <%= link_to "取消訂閱", unsubscribe_post_path(@post), :method => :post, :remote => true, :class => "btn btn-danger" %>
+<% end %>

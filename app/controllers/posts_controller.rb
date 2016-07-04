@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :set_post, :only => [:show, :edit, :update, :destroy, :favourite, :unfavourite, :like, :dislike]
+  before_action :set_post, :only => [:show, :edit, :update, :destroy, :favourite, :unfavourite, :like, :dislike, :subscribe, :unsubscribe]
   before_action :authenticate_user!, :except => [:index, :show]
 
   def index
@@ -146,6 +146,28 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html{redirect_to :back}
       format.js {render "like"}
+    end
+  end
+
+  def subscribe
+    @subscribe = @post.find_my_subscribe(current_user)
+    unless @subscribe
+      @subscribe = Subscribe.create!(:post => @post, :user => current_user)
+    end
+
+    respond_to do |format|
+      format.html{ redirect_to :back }
+      format.js
+    end
+  end
+
+  def unsubscribe
+    @subscribe = @post.find_my_subscribe(current_user)
+    @subscribe.destroy if @subscribe
+
+    respond_to do |format|
+      format.html{ redirect_to :back }
+      format.js{ render "subscribe"}
     end
   end
 
