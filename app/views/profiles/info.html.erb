@@ -39,8 +39,22 @@
     <%end%>
   </ul>
 
+  <h2>Likes</h2>
+  <ul>
+    <% current_user.like_posts.each do |f|%>
+      <li><%= link_to f.title, post_path(f) %></li>
+    <%end%>
+  </ul>
+
+  <h2>Subscribes</h2>
+  <ul>
+    <% current_user.subscribe_posts.each do |f|%>
+      <li><%= link_to f.title, post_path(f) %></li>
+    <%end%>
+  </ul>
+
 
 <% end %>
 
-<%= link_to "Back to Index", posts_path %>
+<%= link_to "Back to Index", posts_path, :class => "btn btn-info" %>
 
