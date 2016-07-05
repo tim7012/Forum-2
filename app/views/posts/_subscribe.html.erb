@@ -2,4 +2,4 @@
   <%= link_to "訂閱", subscribe_post_path(@post), :method => :post, :remote => true, :class => "btn btn-primary" %>
 <% else %>
   <%= link_to "取消訂閱", unsubscribe_post_path(@post), :method => :post, :remote => true, :class => "btn btn-danger" %>
-<% end %>
+<% end %><%= @post.subscribes_by.count%>

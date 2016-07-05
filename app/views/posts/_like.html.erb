@@ -2,4 +2,4 @@
   <%= link_to "Like", like_post_path(@post), :method => :post, :remote => true, :class => "btn btn-primary"%>
 <%else%>
   <%= link_to "Dislike", dislike_post_path(@post), :method => :post, :remote => true, :class => "btn btn-primary"%>
-<%end%>
+<%end%> <%=@post.likes_by.count%>

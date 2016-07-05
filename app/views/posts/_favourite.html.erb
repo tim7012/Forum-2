@@ -2,4 +2,4 @@
   <%= link_to "Favourite", favourite_post_path(@post), :method => :post, :remote => true, :class => "btn btn-primary"%>
 <%else%>
   <%= link_to "Unfavourite", unfavourite_post_path(@post), :method => :post, :remote => true, :class => "btn btn-primary"%>
-<%end%>
+<%end%> <%=@post.favourite_by.count%>
