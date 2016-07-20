@@ -181,3 +181,6 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :content, :clicked, :status, :logo, :category_ids => [])
   end
 end
+
+
+
